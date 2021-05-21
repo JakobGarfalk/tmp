@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Deus Ex Machina</title>
+  {% endif %}
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/w3.css')}}" />
+  <link rel="icon" href="{{ url_for('static', filename='CSS/favicon.ico') }}">
+  {% block scripts %}
+  {% endblock %}
+
+</head>
+
+<body>
+    <div class="w3-cell w3-border-gray">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li><br>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}   
+    </div>
+  {% block content %}
+
+  {% endblock content %}
+
+  {% block extra %}
+
+  {% endblock extra %}
+
+</body>
+
+
+</html>

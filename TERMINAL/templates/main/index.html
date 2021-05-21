@@ -1,0 +1,27 @@
+{% extends "main/layout.html" %}
+
+{% block content %}
+    <h1>SPØRRE UNDERSØKELSE</h1>
+    <p>Tusen takk for at du tar deg tid til å svare på noen spørsmål.</p>
+    <p>(tar ca. 5-10 minutter)</p>
+    {% if form %}
+      <form action="" method="POST">
+
+        {{ form.csrf_token() }}
+        
+        {% for field in form if field.name != "csrf_token" %}
+          {% if field.name != "send_knapp" %}  
+            <p>{{ field.label() }}</p>
+          {% endif %}
+          <p>{{ field }}
+            
+          {% for error in field.errors %}
+            {{ error }}
+          {% endfor %}
+          </p>
+        {% endfor %}
+        
+      </form>
+    {% endif %}
+
+{% endblock content %}
